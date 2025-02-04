@@ -47,3 +47,7 @@
   .breweries-list > * + * {
     margin-top: 1rem;
   }
+
+  .current {
+    background-color: #000000; /* Darker blue for active page */
+  }

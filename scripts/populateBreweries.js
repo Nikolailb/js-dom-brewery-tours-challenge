@@ -72,32 +72,36 @@ function handlePagination(page) {
       console.log(meta);
       const totalPages = Math.ceil(meta.total / perPage);
       const pagination = document.getElementById("pagination");
-      let navigation = [];
-
+      pagination.innerHTML = "";
       if (page > 1) {
         let firstPage = document.createElement("a");
         firstPage.href = "#";
         firstPage.classList.add("page-list");
         firstPage.innerHTML = `<i class="fa fa-angle-double-left" aria-hidden="true"></i>`;
         firstPage.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.scrollTo(0, 0);
           handlePagination(1);
           populateBreweries({
             page: 1,
             perPage: perPage,
           });
         });
+        pagination.appendChild(firstPage);
+
         let previousPage = document.createElement("a");
         previousPage.href = "#";
         previousPage.classList.add("page-list");
         previousPage.innerHTML = `<i class="fa fa-angle-left" aria-hidden="true"></i>`;
         previousPage.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.scrollTo(0, 0);
           handlePagination(page - 1);
           populateBreweries({
             page: page - 1,
             perPage: perPage,
           });
         });
-        pagination.appendChild(firstPage);
         pagination.appendChild(previousPage);
       }
 
@@ -109,8 +113,13 @@ function handlePagination(page) {
         let numberedPage = document.createElement("a");
         numberedPage.href = "#";
         numberedPage.classList.add("page-list");
-        numberedPage.innerHTML = page + i;
+        numberedPage.innerText = page + i;
+        if (i === 0) {
+          numberedPage.style.backgroundColor = "lightblue";
+        }
         numberedPage.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.scrollTo(0, 0);
           handlePagination(page + i);
           populateBreweries({
             page: page + i,
@@ -125,6 +134,8 @@ function handlePagination(page) {
         nextPage.classList.add("page-list");
         nextPage.innerHTML = `<i class="fa fa-angle-right" aria-hidden="true"></i>`;
         nextPage.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.scrollTo(0, 0);
           handlePagination(page + 1);
           populateBreweries({
             page: page + 1,
@@ -134,8 +145,10 @@ function handlePagination(page) {
         let lastPage = document.createElement("a");
         lastPage.href = "#";
         lastPage.classList.add("page-list");
-        lastPage.innerHTML = `<i class="fa fa-angle-double-left" aria-hidden="true"></i>`;
+        lastPage.innerHTML = `<i class="fa fa-angle-double-right" aria-hidden="true"></i>`;
         lastPage.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.scrollTo(0, 0);
           handlePagination(totalPages);
           populateBreweries({
             page: totalPages,
@@ -145,7 +158,6 @@ function handlePagination(page) {
         pagination.appendChild(nextPage);
         pagination.appendChild(lastPage);
       }
-      pagination.innerHTML = navigation.join("\n");
     });
 }
 

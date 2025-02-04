@@ -1,0 +1,49 @@
+#pagination {
+    grid-area: pagination;
+    display: flex;            /* Flexbox for horizontal layout */
+    justify-content: center;  /* Centers the items horizontally */
+    align-items: center;      /* Centers the items vertically */
+    gap: 1rem;                /* Adds space between pagination items */
+    margin-top: 1rem;         /* Optional: Adds space between the list and pagination */
+    margin-bottom: 1rem;      /* Optional: Adds space below the pagination */
+  }
+  
+  #pagination a {
+    display: inline-flex;    /* Allows better control of icon + text if needed */
+    justify-content: center; /* Centers the icon and text inside each pagination item */
+    align-items: center;     /* Centers the icon and text vertically */
+    padding: 0.5rem 1rem;    /* Adds padding to clickable areas */
+    background-color: #1565c0; /* Blue background for clickable items */
+    color: white;            /* White text color */
+    text-decoration: none;   /* Removes underline from links */
+    border-radius: 0.25rem;  /* Rounded corners for the buttons */
+    font-weight: bold;       /* Bold text */
+    font-size: 1rem;         /* Appropriate font size */
+  }
+  
+  #pagination a:hover {
+    background-color: #0d47a1; /* Darker blue on hover */
+  }
+  
+  #pagination a:active {
+    background-color: #0a3c7b; /* Even darker blue on click */
+  }
+
+  article {
+    grid-area: article;
+    padding: 1rem;
+  
+    display: grid;
+    grid-template-rows: auto 1fr auto;  /* Ensure there is space for both the breweries list and the pagination */
+    gap: 1rem;                        /* Adds spacing between the list and pagination */
+  }
+
+  .breweries-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+  }
+  
+  .breweries-list > * + * {
+    margin-top: 1rem;
+  }

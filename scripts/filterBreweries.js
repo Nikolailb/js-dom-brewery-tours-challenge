@@ -6,9 +6,7 @@ document
     let searchValue = document.getElementById("search-breweries").value;
     populateBreweries({
       nameContains: searchValue,
-      breweryTypes: event.target.value
-        ? [event.target.value]
-        : ["micro", "regional", "brewpub"],
+      breweryTypes: event.target.value ? [event.target.value] : [],
     });
   });
 
@@ -19,9 +17,7 @@ document
     let filterValue = document.getElementById("filter-by-type").value;
     populateBreweries({
       nameContains: event.target.value,
-      breweryTypes: filterValue
-        ? [filterValue]
-        : ["micro", "regional", "brewpub"],
+      breweryTypes: filterValue ? [filterValue] : [],
     });
   });
 document

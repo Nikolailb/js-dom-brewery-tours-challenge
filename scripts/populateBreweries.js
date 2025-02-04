@@ -11,9 +11,9 @@ function populateBreweries({ page = 1, perPage = 10 }) {
   console.log(nameContains, breweryTypes);
   const breweryList = document.getElementById("breweries-list");
   breweryList.innerHTML = "";
-  let query = `https://api.openbrewerydb.org/v1/breweries?per_page=${perPage}&page=${page}`;
-  if (nameContains) {
-    query += `&query=${encodeURIComponent(nameContains)}`;
+  let query = `https://api.openbrewerydb.org/v1/breweries?per_page=${perPage}&page=${page}&sort=name,type:asc`;
+  if (nameContains.length > 0) {
+    query += `&by_name=${encodeURIComponent(nameContains)}`;
   }
   breweryTypes.forEach((type) => {
     query += `&by_type=${type}`;
@@ -59,9 +59,9 @@ function handlePagination(page) {
   let nameContains = document.getElementById("search-breweries").value;
   const breweryList = document.getElementById("breweries-list");
   breweryList.innerHTML = "";
-  let query = `https://api.openbrewerydb.org/v1/breweries/meta?per_page=${perPage}&page=${page}&sort=name,type:asc`;
+  let query = `https://api.openbrewerydb.org/v1/breweries/meta?per_page=${perPage}&page=${page}`;
   if (nameContains) {
-    query += `&query=${encodeURIComponent(nameContains)}`;
+    query += `&by_name=${encodeURIComponent(nameContains)}`;
   }
   breweryTypes.forEach((type) => {
     query += `&by_type=${type}`;
@@ -116,6 +116,7 @@ function handlePagination(page) {
         numberedPage.innerText = page + i;
         if (i === 0) {
           numberedPage.style.backgroundColor = "lightblue";
+          numberedPage.classList.add("active");
         }
         numberedPage.addEventListener("click", (event) => {
           event.preventDefault();
